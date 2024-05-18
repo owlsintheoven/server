@@ -1,0 +1,451 @@
+package command_docs
+
+func docs() map[string][]interface{} {
+	commands := make(map[string][]interface{})
+	commands["ping"] = []interface{}{
+		"ping",
+		[]interface{}{
+			"summary",
+			"Returns the server's liveliness response.",
+			"since",
+			"1.0.0",
+			"group",
+			"connection",
+			"complexity",
+			"O(1)",
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"message",
+					"type",
+					"string",
+					"display_text",
+					"message",
+					"flags",
+					[]interface{}{
+						"optional",
+					},
+				},
+			},
+		},
+	}
+	commands["set"] = []interface{}{
+		"set",
+		[]interface{}{
+			"summary",
+			"Sets the string value of a key, ignoring its type. The key is created if it doesn't exist.",
+			"since",
+			"1.0.0",
+			"group",
+			"string",
+			"complexity",
+			"O(1)",
+			"history",
+			[]interface{}{
+				[]interface{}{
+					"2.6.12",
+					"Added the `EX`, `PX`, `NX` and `XX` options.",
+				},
+				[]interface{}{
+					"6.0.0",
+					"Added the `KEEPTTL` option.",
+				},
+				[]interface{}{
+					"6.2.0",
+					"Added the `GET`, `EXAT` and `PXAT` option.",
+				},
+				[]interface{}{
+					"7.0.0",
+					"Allowed the `NX` and `GET` options to be used together.",
+				},
+			},
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+				[]interface{}{
+					"name",
+					"value",
+					"type",
+					"string",
+					"display_text",
+					"value",
+				},
+				[]interface{}{
+					"name",
+					"condition",
+					"type",
+					"oneof",
+					"since",
+					"2.6.12",
+					"flags",
+					[]interface{}{
+						"optional",
+					},
+					"arguments",
+					[]interface{}{
+						[]interface{}{
+							"name",
+							"nx",
+							"type",
+							"pure-token",
+							"display_text",
+							"nx",
+							"token",
+							"NX",
+						},
+						[]interface{}{
+							"name",
+							"xx",
+							"type",
+							"pure-token",
+							"display_text",
+							"xx",
+							"token",
+							"XX",
+						},
+					},
+				},
+				[]interface{}{
+					"name",
+					"get",
+					"type",
+					"pure-token",
+					"display_text",
+					"get",
+					"token",
+					"GET",
+					"since",
+					"6.2.0",
+					"flags",
+					[]interface{}{
+						"optional",
+					},
+				},
+				[]interface{}{
+					"name",
+					"expiration",
+					"type",
+					"oneof",
+					"flags",
+					[]interface{}{
+						"optional",
+					},
+					"arguments",
+					[]interface{}{
+						[]interface{}{
+							"name",
+							"seconds",
+							"type",
+							"integer",
+							"display_text",
+							"seconds",
+							"token",
+							"EX",
+							"since",
+							"2.6.12",
+						},
+						[]interface{}{
+							"name",
+							"milliseconds",
+							"type",
+							"integer",
+							"display_text",
+							"milliseconds",
+							"token",
+							"PX",
+							"since",
+							"2.6.12",
+						},
+						[]interface{}{
+							"name",
+							"unix-time-seconds",
+							"type",
+							"unix-time",
+							"display_text",
+							"unix-time-seconds",
+							"token",
+							"EXAT",
+							"since",
+							"6.2.0",
+						},
+						[]interface{}{
+							"name",
+							"unix-time-milliseconds",
+							"type",
+							"unix-time",
+							"display_text",
+							"unix-time-milliseconds",
+							"token",
+							"PXAT",
+							"since",
+							"6.2.0",
+						},
+						[]interface{}{
+							"name",
+							"keepttl",
+							"type",
+							"pure-token",
+							"display_text",
+							"keepttl",
+							"token",
+							"KEEPTTL",
+							"since",
+							"6.0.0",
+						},
+					},
+				},
+			},
+		},
+	}
+	commands["get"] = []interface{}{
+		"get",
+		[]interface{}{
+			"summary",
+			"Returns the string value of a key.",
+			"since",
+			"1.0.0",
+			"group",
+			"string",
+			"complexity",
+			"O(1)",
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+			},
+		},
+	}
+	commands["del"] = []interface{}{
+		"del",
+		[]interface{}{
+			"summary",
+			"Deletes one or more keys.",
+			"since",
+			"1.0.0",
+			"group",
+			"generic",
+			"complexity",
+			"O(N) where N is the number of keys that will be removed. When a key to remove holds a value other than a string, the individual complexity for this key is O(M) where M is the number of elements in the list, set, sorted set or hash. Removing a single key that holds a string value is O(1).",
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+					"flags",
+					[]interface{}{
+						"multiple",
+					},
+				},
+			},
+		},
+	}
+	commands["hset"] = []interface{}{
+		"hset",
+		[]interface{}{
+			"summary",
+			"Creates or modifies the value of a field in a hash.",
+			"since",
+			"2.0.0",
+			"group",
+			"hash",
+			"complexity",
+			"O(1) for each field/value pair added, so O(N) to add N field/value pairs when the command is called with multiple field/value pairs.",
+			"history",
+			[]interface{}{
+				[]interface{}{
+					"4.0.0",
+					"Accepts multiple `field` and `value` arguments.",
+				},
+			},
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+				[]interface{}{
+					"name",
+					"data",
+					"type",
+					"block",
+					"flags",
+					[]interface{}{
+						"multiple",
+					},
+					"arguments",
+					[]interface{}{
+						[]interface{}{
+							"name",
+							"field",
+							"type",
+							"string",
+							"display_text",
+							"field",
+						},
+						[]interface{}{
+							"name",
+							"value",
+							"type",
+							"string",
+							"display_text",
+							"value",
+						},
+					},
+				},
+			},
+		},
+	}
+	commands["hget"] = []interface{}{
+		"hget",
+		[]interface{}{
+			"summary",
+			"Returns the value of a field in a hash.",
+			"since",
+			"2.0.0",
+			"group",
+			"hash",
+			"complexity",
+			"O(1)",
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+				[]interface{}{
+					"name",
+					"field",
+					"type",
+					"string",
+					"display_text",
+					"field",
+				},
+			},
+		},
+	}
+	commands["hdel"] = []interface{}{
+		"hdel",
+		[]interface{}{
+			"summary",
+			"Deletes one or more fields and their values from a hash. Deletes the hash if no fields remain.",
+			"since",
+			"2.0.0",
+			"group",
+			"hash",
+			"complexity",
+			"O(N) where N is the number of fields to be removed.",
+			"history",
+			[]interface{}{
+				[]interface{}{
+					"2.4.0",
+					"Accepts multiple `field` arguments.",
+				},
+			},
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+				[]interface{}{
+					"name",
+					"field",
+					"type",
+					"string",
+					"display_text",
+					"field",
+					"flags",
+					[]interface{}{
+						"multiple",
+					},
+				},
+			},
+		},
+	}
+	commands["hgetall"] = []interface{}{
+		"hgetall",
+		[]interface{}{
+			"summary",
+			"Returns all fields and values in a hash.",
+			"since",
+			"2.0.0",
+			"group",
+			"hash",
+			"complexity",
+			"O(N) where N is the size of the hash.",
+			"arguments",
+			[]interface{}{
+				[]interface{}{
+					"name",
+					"key",
+					"type",
+					"key",
+					"display_text",
+					"key",
+					"key_spec_index",
+					0,
+				},
+			},
+		},
+	}
+
+	return commands
+}
+
+func GetDocs(cmd string) []interface{} {
+	if cmd == "" {
+		var res []interface{}
+		for _, v := range docs() {
+			res = append(res, v...)
+		}
+		return res
+	}
+
+	doc, ok := docs()[cmd]
+	if !ok {
+		return []interface{}{}
+	}
+	return doc
+}
